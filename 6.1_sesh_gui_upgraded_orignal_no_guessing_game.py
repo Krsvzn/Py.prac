@@ -43,7 +43,7 @@ def checker():
         global high_score
         if guess_count < high_score:
            high_score =  int(1000/guess_count) 
-           actual_highscore = "Highscore : " + str(high_score)
+           actual_highscore = "Score : " + str(high_score)
            my_highscore_label.config(text = actual_highscore)
         else:
            my_label.config(text = "You Lose! :( ")
