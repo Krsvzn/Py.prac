@@ -4,6 +4,11 @@ import os
 import json
 
 pygame.init()
+pygame.mixer.init()
+music_boss = pygame.mixer.music.load("boss.mp3")
+music_rookie = pygame.mixer.music.load("rookie.mp3")
+pygame.mixer.music.play(-1)
+boom = pygame.mixer.Sound("boom.mp3")
 highscore = 0
 filename = "score.json"
 if os.path.exists(filename):
@@ -72,14 +77,17 @@ while running:
                       player.height = 200
                         
         if ability_logic == 10  and i == 5:
+                ability_logic == 0
                 player.width = 50
                 player.height = 50
                 player_image = pygame.transform.scale(player_image,(50,50))
         elif ability_logic == 20 and i == 10:
+                ability_logic == 0
                 player.width = 50
                 player.height = 50
                 player_image = pygame.transform.scale(player_image,(50,50))
         elif ability_logic == 30 and i == 20:
+                ability_logic == 0
                 player.width = 50
                 player.height = 50
                 player_image = pygame.transform.scale(player_image,(50,50))
@@ -98,9 +106,9 @@ while running:
                 player.y = HEIGHT - player.height
         if player.y < 0:
                 player.y = 0    
-
         
         if player.colliderect(target):
+                boom.play()
                 i += 1
                 target.x = random.randint(0,WIDTH-target.height)
                 target.y = random.randint(0,HEIGHT-target.width)
@@ -110,7 +118,12 @@ while running:
                 R = random.randint(140,200)
                 G = random.randint(140,200)
                 B = random.randint(140,200)
-        
+        if score == 5000:
+                music_boss = music_boss = pygame.mixer.music.load("boss.mp3")
+                pygame.mixer.music.play(-1)
+                target.width = 25
+                target.height = 25
+                target_image = pygame.transform.scale(target_image,(25,25))
 
         screen.fill((R,G,B))
         screen.blit(player_image,(player.x,player.y))
