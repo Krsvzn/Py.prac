@@ -2,7 +2,6 @@ import tkinter as tk
 import random
 import os
 import json
-
 window = tk.Tk()
 window.title("No Guessing Game")
 window.geometry("570x560")
